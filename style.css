@@ -120,25 +120,118 @@ input{
 }
 
 .bottom{
-    height: 70%;
     width: 100%;
-    background: gray;
+    background: white;
     border-radius: 5px;
     display: flex;
     flex-direction: column;
     /* padding: 20px; */
+    box-shadow: 0 2px 25px rgba(0, 0, 0, 0.2);
 }
 ul li{
     list-style-type: none;
     font-size: 17px;
     height: 60px;
-    background: powderblue;
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
-    padding: 12px 8px 12px 50px;
+    /* background: green; */
+    border-top: 1px solid rgb(0, 0, 0, 0.2);
+    border-bottom: 1px solid rgb(0, 0, 0, 0.2);
+    padding: 12px 8px 12px 20px;
     user-select: none;
-    cursor: pointer;
+    /* cursor: pointer; */
     position: relative;
     /* color: var(--dark-text-color); */
     color: var(--text-color1);
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    position: relative;
+}
+
+ul li::before{
+    content: "";
+    height: 23px;
+    width: 23px;
+    border: 1px solid rgb(0, 0, 0, 0.3);
+    border-radius: 50%;
+    margin-right: 20px;
+}
+ul li:hover::before{
+    border: none;
+    background-image: url(images/unchecked\ border.svg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    
+}
+ul li:hover::after{
+    content: url(images/icon-cross.svg);
+    position: absolute;
+    right: 0px;
+    margin-right: 20px;
+    cursor: pointer;
+}
+ul li.checked{
+    color: rgb(0, 0, 0, 0.3);
+    text-decoration: line-through;
+}
+ul li.checked::before{
+    content: url(images/icon-check.svg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #57ddff, #c058f3);
+    border: none;
+}
+
+.bottomNav{
+    display: flex;
+    height: 50px;
+    width: 100%;
+}
+
+.bottomNav1{
+    width: 120px;
+    padding-left: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.leftitem{
+    font-size: 16px;
+    cursor: pointer;
+    color: rgba(0, 0, 0, 0.5);
+}
+.leftitem:hover{
+    color: black
+}
+.bottomNav2{
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.bottomNav2content{
+    font-size: 16px;
+    cursor: pointer;
+    color: rgba(0, 0, 0, 0.5);
+}
+.bottomNav2content:hover{
+    color: black;
+}
+.bottomNav3{
+    display: flex;
+    align-items: center;
+    width: 150px;
+    padding-right: 20px;
+}
+.clear{
+    font-size: 16px;
+    cursor: pointer;
+    color: rgba(0, 0, 0, 0.5);
+    
+}
+.clear:hover{
+    color: black;
 }
