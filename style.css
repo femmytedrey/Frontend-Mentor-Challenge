@@ -6,6 +6,57 @@
     margin: 0px;
     font-family: 'Josefin Sans', sans-serif;
 }
+:root {
+    --primary-bg: url('images/bg-desktop-light.jpg');
+    --secondary-bg: #fff;
+    --boxcontainer-bg: #fff;
+    --text-color: #002765;
+    
+
+    
+    
+  
+    --button-bg: #ff5945; /* Bright orange-red */
+    --button-text: #fff; /* White */
+  
+    --list-item-bg: #edeef0; /* Light gray */
+    --list-item-text: #555; /* Dim gray */
+    --slider-button: #c3c3c3;
+    --text-color1: black;
+
+
+    --dark-primary-bg: url('images/bg-desktop-dark.jpg');
+    --dark-secondary-bg: hsl(235, 21%, 11%);
+    --dark-boxcontainer-bg: hsl(235, 24%, 19%);
+
+   
+}
+
+
+
+/* ### Light Theme
+
+- Very Light Gray: hsl(0, 0%, 98%);
+- Very Light Grayish Blue: hsl(236, 33%, 92%)
+- Light Grayish Blue: hsl(233, 11%, 84%)
+- Dark Grayish Blue: hsl(236, 9%, 61%)
+- Very Dark Grayish Blue: hsl(235, 19%, 35%)
+
+### Dark Theme
+
+- Very Dark Blue: hsl(235, 21%, 11%)
+- Very Dark Desaturated Blue: hsl(235, 24%, 19%)
+- Light Grayish Blue: hsl(234, 39%, 85%)
+- Light Grayish Blue (hover): hsl(236, 33%, 92%)
+- Dark Grayish Blue: hsl(234, 11%, 52%)
+- Very Dark Grayish Blue: hsl(233, 14%, 35%)
+- Very Dark Grayish Blue: hsl(237, 14%, 26%) */
+
+
+
+.darkmode{
+    --dark-primary-bg: url('images/bg-desktop-dark.jpg');
+}
 
 .bg-container{
     display: flex;
@@ -19,14 +70,14 @@
 .bg-containerTop{
     height: 35%;
     width: 100%;
-    background-image: url(images/bg-desktop-light.jpg);
+    background-image: var(--dark-primary-bg);
     background-size: cover;
     background-repeat: no-repeat;
 }
 .bg-containerBottom{
     height: 65%;
     width: 100%;
-    background: powderblue;
+    background: var(--dark-secondary-bg);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -86,7 +137,7 @@
 .down{
     height: 40%;
     width: 100%;
-    background: white;
+    background: var(--dark-boxcontainer-bg);
     display: flex;
     border-radius: 5px;
     align-items: center;
@@ -121,7 +172,7 @@ input{
 
 .bottom{
     width: 100%;
-    background: white;
+    background: var(--dark-boxcontainer-bg);
     border-radius: 5px;
     display: flex;
     flex-direction: column;

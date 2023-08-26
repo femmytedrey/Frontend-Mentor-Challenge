@@ -4,11 +4,13 @@ const sun = document.querySelector(".iconsun");
 moon.addEventListener('click', () => {
     moon.style.display = 'none';
     sun.style.display = 'block';
+    saveData();
 });
 
 sun.addEventListener('click', () => {
     moon.style.display = 'block';
     sun.style.display = 'none';
+    saveData();
 });
 
 const inputElement = document.getElementById('input-box');
@@ -26,6 +28,16 @@ window.addEventListener('DOMContentLoaded', () => {
 
     // Update items array after loading saved data
     items = Array.from(listContainer.querySelectorAll('ul li'));
+
+    updateItemsLeftCount();
+
+
+    items.forEach(item => {
+        item.setAttribute('draggable', true); // Add draggable attribute
+        item.addEventListener('dragstart', handleDragStart);
+        item.addEventListener('dragover', handleDragOver);
+        item.addEventListener('drop', handleDrop);
+    });
 
     updateItemsLeftCount();
 });
@@ -53,6 +65,7 @@ inputElement.addEventListener('keydown', (event) => {
             inputElement.value = '';
             updateItemsLeftCount();
         }
+        saveData();
     }
 });
 
@@ -159,3 +172,43 @@ clearCompleted.addEventListener('click', () => {
     
     updateItemsLeftCount();
 });
+
+let draggedItem = null; 
+function handleDragStart(e) {
+    draggedItem = e.target;
+    e.dataTransfer.effectAllowed = 'move';
+    e.dataTransfer.setData('text/html', draggedItem);
+}
+
+function handleDragOver(e) {
+    if (e.preventDefault) {
+        e.preventDefault(); // Allows us to drop
+    }
+    e.dataTransfer.dropEffect = 'move';
+    return false;
+}
+
+function handleDrop(e) {
+    if (e.stopPropagation) {
+        e.stopPropagation(); // Stops some browsers from redirecting
+    }
+
+    if (draggedItem !== this) {
+        draggedItem.parentNode.removeChild(draggedItem);
+        const dropZone = this.closest('li');
+        dropZone.insertAdjacentElement('beforebegin', draggedItem);
+    }
+
+    return false;
+}
+
+
+
+const saveData = () => {
+    try {
+        localStorage.setItem("data", listContainer.innerHTML);
+        console.log("Data saved successfully!");
+    } catch (error) {
+        console.error("Error while saving data:", error);
+    }
+};
