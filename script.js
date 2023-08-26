@@ -12,13 +12,23 @@ sun.addEventListener('click', () => {
 });
 
 const inputElement = document.getElementById('input-box');
+const listContainer = document.getElementById('list-container');
 
 inputElement.addEventListener('keydown', (event) => {
     if (event.key === 'Enter') {
         event.preventDefault();
-        
-        // Your submission logic here
-        console.log('Input submitted with value:', inputElement.value);
-        inputElement.value = ''
+
+        const taskText = inputElement.value.trim();
+        if(taskText === ''){
+            alert('Input cannot be empty!')
+        } else {
+            const li = document.createElement('li');
+            li.textContent = taskText;
+            listContainer.appendChild(li);
+
+            inputElement.value = '';
+        };   
     }
 });
+
+
