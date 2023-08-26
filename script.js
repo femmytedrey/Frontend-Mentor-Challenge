@@ -11,16 +11,19 @@ sun.addEventListener('click', () => {
     sun.style.display = 'none';
 });
 
-
 const inputElement = document.getElementById('input-box');
 const listContainer = document.getElementById('list-container');
 const itemsLeftElement = document.querySelector('.leftitem'); // Select the element with the correct class
+
+let items = []; // Array to store all items
 
 window.addEventListener('DOMContentLoaded', () => {
     const savedData = localStorage.getItem('data');
     if (savedData) {
         listContainer.innerHTML = savedData;
     }
+
+    items = Array.from(document.querySelectorAll('ul li')); // Populate the items array
 
     updateItemsLeftCount();
 });
@@ -40,6 +43,7 @@ inputElement.addEventListener('keydown', (event) => {
             li.appendChild(span);
             listContainer.appendChild(li);
 
+            items.push(li); // Add the new item to the items array
             inputElement.value = '';
             updateItemsLeftCount();
         }
@@ -50,106 +54,102 @@ listContainer.addEventListener('click', (e) => {
     if (e.target.tagName === 'LI') {
         e.target.classList.toggle('checked');
         updateItemsLeftCount();
-    } else if (e.target.classList.contains('delete-icon')) { // Check for the delete icon class
-        e.target.parentElement.remove();
+    } else if (e.target.classList.contains('delete-icon')) {
+        const listItem = e.target.parentElement;
+        const index = items.indexOf(listItem);
+
+        if (index !== -1) {
+            items.splice(index, 1);
+        }
+
+        listItem.remove();
         updateItemsLeftCount();
+
+        // Update the views after deletion
+        const activeFilter = getActiveFilter();
+        displayItems(activeFilter);
+        setActiveFilter(activeFilter);
     }
 }, false);
 
+const allNav = document.querySelector('.all');
+const activeNav = document.querySelector('.actives');
+const completedNav = document.querySelector('.completed');
 
+allNav.addEventListener('click', () => {
+    displayItems('all');
+    setActiveFilter('all');
+});
 
+activeNav.addEventListener('click', () => {
+    displayItems('active');
+    setActiveFilter('active');
+});
+
+completedNav.addEventListener('click', () => {
+    displayItems('completed');
+    setActiveFilter('completed');
+});
+
+function getActiveFilter() {
+    if (allNav.classList.contains('active')) {
+        return 'all';
+    } else if (activeNav.classList.contains('active')) {
+        return 'active';
+    } else if (completedNav.classList.contains('active')) {
+        return 'completed';
+    }
+}
+
+function displayItems(filter) {
+    listContainer.innerHTML = '';
+
+    if (filter === 'all') {
+        items.forEach(item => listContainer.appendChild(item));
+    } else if (filter === 'active') {
+        items.forEach(item => {
+            if (!item.classList.contains('checked')) {
+                listContainer.appendChild(item);
+            }
+        });
+    } else if (filter === 'completed') {
+        items.forEach(item => {
+            if (item.classList.contains('checked')) {
+                listContainer.appendChild(item);
+            }
+        });
+    }
+
+    
+
+    updateItemsLeftCount();
+}
+
+function setActiveFilter(filter) {
+    allNav.classList.remove('active');
+    activeNav.classList.remove('active');
+    completedNav.classList.remove('active');
+
+    if (filter === 'all') {
+        allNav.classList.add('active');
+    } else if (filter === 'active') {
+        activeNav.classList.add('active');
+    } else if (filter === 'completed') {
+        completedNav.classList.add('active');
+    }
+}
 
 function updateItemsLeftCount() {
     const uncheckedItems = document.querySelectorAll('ul li:not(.checked)').length;
     itemsLeftElement.textContent = `${uncheckedItems} item${uncheckedItems !== 1 ? 's' : ''} left`;
 }
+const clearCompleted = document.querySelector('.clear');
 
-
-// Assuming you have a listContainer variable declared
-// const listContainer = document.getElementById("list-container");
-const allNav = document.querySelector('.all');
-const activeNav = document.querySelector('.actives');
-const completedNav = document.querySelector('.completed');
-
-let items = []; // Array to store all items
-
-allNav.addEventListener('click', () => {
-    allNav.classList.add('active');
-    activeNav.classList.remove('active');
-    completedNav.classList.remove('active');
-
-    displayAllItems();
-});
-
-activeNav.addEventListener('click', () => {
-    activeNav.classList.add('active');
-    allNav.classList.remove('active');
-    completedNav.classList.remove('active');
-
-    displayActiveItems();
-});
-
-completedNav.addEventListener('click', () => {
-    completedNav.classList.add('active');
-    allNav.classList.remove('active');
-    activeNav.classList.remove('active');
-
-    displayCompletedItems();
-});
-
-// Function to display all items
-function displayAllItems() {
-    listContainer.innerHTML = ''; // Clear the list
-
-    items.forEach(item => {
-        listContainer.appendChild(item);
-    });
-
-    updateItemsLeftCount();
-}
-
-// Function to display active items
-// Function to display active items
-function displayActiveItems() {
-    listContainer.innerHTML = ''; // Clear the list
-
-    const uncheckedItems = items.filter(item => !item.classList.contains('checked'));
-
-    uncheckedItems.forEach(item => {
-        listContainer.appendChild(item);
-    });
-
-    updateItemsLeftCount();
-}
-
-
-// Function to display completed items
-function displayCompletedItems() {
-    listContainer.innerHTML = ''; // Clear the list
-
-    const completedItems = items.filter(item => item.classList.contains('checked'));
-
-    completedItems.forEach(item => {
-        listContainer.appendChild(item);
-    });
-
-    updateItemsLeftCount();
-}
-
-// Rest of your code...
-
-listContainer.addEventListener('click', (e) => {
-    // Your existing code for marking items as checked and deleting items
-});
-
-// Initialize items array
-window.addEventListener('DOMContentLoaded', () => {
-    const savedData = localStorage.getItem('data');
-    if (savedData) {
-        listContainer.innerHTML = savedData;
-    }
-
-    items = Array.from(document.querySelectorAll('ul li')); // Populate the items array
-
+clearCompleted.addEventListener('click', () => {
+    // Remove completed items from the items array and the DOM
+    items = items.filter(item => !item.classList.contains('checked'));
+    listContainer.innerHTML = '';
+    items.forEach(item => listContainer.appendChild(item));
+    
     updateItemsLeftCount();
 });
