@@ -15,7 +15,8 @@ const inputElement = document.getElementById('input-box');
 const listContainer = document.getElementById('list-container');
 const itemsLeftElement = document.querySelector('.leftitem'); // Select the element with the correct class
 
-let items = []; // Array to store all items
+// Instead of populating items array from DOMContentLoaded event
+let items = [];
 
 window.addEventListener('DOMContentLoaded', () => {
     const savedData = localStorage.getItem('data');
@@ -23,16 +24,21 @@ window.addEventListener('DOMContentLoaded', () => {
         listContainer.innerHTML = savedData;
     }
 
-    items = Array.from(document.querySelectorAll('ul li')); // Populate the items array
+    // Update items array after loading saved data
+    items = Array.from(listContainer.querySelectorAll('ul li'));
 
     updateItemsLeftCount();
 });
+
 
 inputElement.addEventListener('keydown', (event) => {
     if (event.key === 'Enter') {
         event.preventDefault();
 
         const taskText = inputElement.value.trim();
+        if(taskText === ''){
+            alert('Input cannot be empty!!');
+        }
         if (taskText !== '') {
             const li = document.createElement('li');
             li.textContent = taskText;
