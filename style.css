@@ -163,13 +163,24 @@ ul li:hover::before{
     background-repeat: no-repeat;
     
 }
-ul li:hover::after{
+/* ul li:hover::after{
     content: url(images/icon-cross.svg);
     position: absolute;
     right: 0px;
     margin-right: 20px;
     cursor: pointer;
+} */
+ul li span.delete-icon {
+    background-image: url(images/icon-cross.svg); /* Add the image URL here */
+    background-size: cover;
+    width: 20px; /* Adjust the width as needed */
+    height: 20px; /* Adjust the height as needed */
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+    margin-right: 20px;
 }
+
 ul li.checked{
     color: rgb(0, 0, 0, 0.3);
     text-decoration: line-through;
@@ -212,13 +223,44 @@ ul li.checked::before{
     padding-left: 20px;
     padding-right: 20px;
 }
-.bottomNav2content{
+/* .bottomNav2content{
+    font-size: 16px;
+    cursor: pointer;
+    color: rgba(0, 0, 0, 0.5);
+} */
+
+.all{
     font-size: 16px;
     cursor: pointer;
     color: rgba(0, 0, 0, 0.5);
 }
-.bottomNav2content:hover{
+.actives{
+    font-size: 16px;
+    cursor: pointer;
+    color: rgba(0, 0, 0, 0.5);
+}
+.completed{
+    font-size: 16px;
+    cursor: pointer;
+    color: rgba(0, 0, 0, 0.5);
+}
+.all:hover{
     color: black;
+}
+.actives:hover{
+    color: black;
+}
+.completed:hover{
+    color: black;
+}
+.all.active {
+    color: #002dce; 
+}
+.actives.active {
+    color: #002dce; 
+}
+.completed.active {
+    color: #002dce; 
 }
 .bottomNav3{
     display: flex;
