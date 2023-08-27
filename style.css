@@ -10,7 +10,10 @@
     --primary-bg: url('images/bg-desktop-light.jpg');
     --secondary-bg: #fff;
     --boxcontainer-bg: #fff;
-    --text-color: #002765;
+    --text-color: hsl(0, 0%, 0%);
+    --linethrough-color: rgb(0, 0, 0, 0.3);
+    --bottomNav-color: rgba(0, 0, 0, 0.5);
+    --bottomNavhover-color: rgb(0,0,0);
     
 
     
@@ -28,6 +31,8 @@
     --dark-primary-bg: url('images/bg-desktop-dark.jpg');
     --dark-secondary-bg: hsl(235, 21%, 11%);
     --dark-boxcontainer-bg: hsl(235, 24%, 19%);
+    --dark-text-color: hsl(234, 39%, 85%);
+    --dark-linethrough-color: hsl(233, 14%, 35%);
 
    
 }
@@ -168,6 +173,7 @@ input{
     border: none;
     background: none;
     outline: none;
+    color: var(--dark-text-color);
 }
 
 .bottom{
@@ -191,7 +197,7 @@ ul li{
     /* cursor: pointer; */
     position: relative;
     /* color: var(--dark-text-color); */
-    color: var(--text-color1);
+    color: var(--dark-text-color);
     display: flex;
     align-items: center;
     border-radius: 5px;
@@ -233,7 +239,7 @@ ul li span.delete-icon {
 }
 
 ul li.checked{
-    color: rgb(0, 0, 0, 0.3);
+    color: var(--dark-linethrough-color);
     text-decoration: line-through;
 }
 ul li.checked::before{
@@ -261,10 +267,10 @@ ul li.checked::before{
 .leftitem{
     font-size: 16px;
     cursor: pointer;
-    color: rgba(0, 0, 0, 0.5);
+    color: var(--bottomNav-color);
 }
 .leftitem:hover{
-    color: black
+    color: var(--bottomNavhover-color);
 }
 .bottomNav2{
     flex: 1;
@@ -283,26 +289,26 @@ ul li.checked::before{
 .all{
     font-size: 16px;
     cursor: pointer;
-    color: rgba(0, 0, 0, 0.5);
+    color: var(--bottomNav-color);
 }
 .actives{
     font-size: 16px;
     cursor: pointer;
-    color: rgba(0, 0, 0, 0.5);
+    color: var(--bottomNav-color);
 }
 .completed{
     font-size: 16px;
     cursor: pointer;
-    color: rgba(0, 0, 0, 0.5);
+    color: var(--bottomNav-color);
 }
 .all:hover{
-    color: black;
+    color: var(--bottomNavhover-color);
 }
 .actives:hover{
-    color: black;
+    color: var(--bottomNavhover-color);
 }
 .completed:hover{
-    color: black;
+    color: var(--bottomNavhover-color);
 }
 .all.active {
     color: #002dce; 
