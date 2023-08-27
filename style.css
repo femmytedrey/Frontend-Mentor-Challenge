@@ -14,6 +14,7 @@
     --linethrough-color: rgb(0, 0, 0, 0.3);
     --bottomNav-color: rgba(0, 0, 0, 0.5);
     --bottomNavhover-color: rgb(0,0,0);
+    --border-color: 1px solid rgb(0, 0, 0, 0.2);
     
 
     
@@ -33,6 +34,9 @@
     --dark-boxcontainer-bg: hsl(235, 24%, 19%);
     --dark-text-color: hsl(234, 39%, 85%);
     --dark-linethrough-color: hsl(233, 14%, 35%);
+    --dark-bottomNav-color: hsl(234, 11%, 52%);
+    --dark-bottomNavhover-color: hsl(234, 39%, 85%);
+    --dark-border-color: 1px solid hsl(237, 14%, 26%);
 
    
 }
@@ -190,8 +194,8 @@ ul li{
     font-size: 17px;
     height: 60px;
     /* background: green; */
-    border-top: 1px solid rgb(0, 0, 0, 0.2);
-    border-bottom: 1px solid rgb(0, 0, 0, 0.2);
+    /* border-top: 1px solid rgb(0, 0, 0, 0.2); */
+    border-bottom: var(--dark-border-color);
     padding: 12px 8px 12px 20px;
     user-select: none;
     /* cursor: pointer; */
@@ -267,10 +271,10 @@ ul li.checked::before{
 .leftitem{
     font-size: 16px;
     cursor: pointer;
-    color: var(--bottomNav-color);
+    color: var(--dark-bottomNav-color);
 }
 .leftitem:hover{
-    color: var(--bottomNavhover-color);
+    color: var(--dark-bottomNavhover-color);
 }
 .bottomNav2{
     flex: 1;
@@ -289,26 +293,26 @@ ul li.checked::before{
 .all{
     font-size: 16px;
     cursor: pointer;
-    color: var(--bottomNav-color);
+    color: var(--dark-bottomNav-color);
 }
 .actives{
     font-size: 16px;
     cursor: pointer;
-    color: var(--bottomNav-color);
+    color: var(--dark-bottomNav-color);
 }
 .completed{
     font-size: 16px;
     cursor: pointer;
-    color: var(--bottomNav-color);
+    color: var(--dark-bottomNav-color);
 }
 .all:hover{
-    color: var(--bottomNavhover-color);
+    color: var(--dark-bottomNavhover-color);
 }
 .actives:hover{
-    color: var(--bottomNavhover-color);
+    color: var(--dark-bottomNavhover-color);
 }
 .completed:hover{
-    color: var(--bottomNavhover-color);
+    color: var(--dark-bottomNavhover-color);
 }
 .all.active {
     color: #002dce; 
@@ -328,9 +332,9 @@ ul li.checked::before{
 .clear{
     font-size: 16px;
     cursor: pointer;
-    color: rgba(0, 0, 0, 0.5);
+    color: var(--dark-bottomNav-color);
     
 }
 .clear:hover{
-    color: black;
+    color: var(--dark-bottomNavhover-color);
 }
