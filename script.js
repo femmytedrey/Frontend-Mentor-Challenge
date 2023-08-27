@@ -5,7 +5,6 @@ moon.addEventListener('click', () => {
     moon.style.display = 'none';
     sun.style.display = 'block';
     document.body.classList.toggle("dark-mode");
-
     saveData()
 });
 
@@ -13,7 +12,6 @@ sun.addEventListener('click', () => {
     moon.style.display = 'block';
     sun.style.display = 'none';
     document.body.classList.remove("dark-mode");
-
     saveData()
 });
 
@@ -57,6 +55,8 @@ window.addEventListener('DOMContentLoaded', () => {
         sun.style.display = 'none';
         document.body.classList.remove("dark-mode");
     }
+
+    
 
     updateItemsLeftCount();
 });
