@@ -61,7 +61,6 @@ body{
     justify-content: center;
     align-items: center;
     position: relative;
-    /* background-color: green; */
     max-height: 100vh;
     
 }
@@ -69,7 +68,6 @@ body{
 .container{
     height: auto;
     width: 500px;
-    /* background: teal; */
     position: absolute;
     top: -200px;
     display: flex;
@@ -81,20 +79,15 @@ body{
 .top{
     height: 150px;
     width: 100%;
-    /* background: powderblue; */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    
-    /* border-radius: 15px; */
     margin-bottom: 25px;
 }
 .up{
     height: 40%;
     width: 100%;
-    /* background: purple; */
     display: flex;
-    /* justify-content: center; */
     align-items: center;
 }
 .todo{
@@ -129,7 +122,6 @@ body{
 .left{
     width: 15%;
     height: 100%;
-    /* background: green; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -160,21 +152,16 @@ input{
     border-radius: 5px;
     display: flex;
     flex-direction: column;
-    /* padding: 20px; */
     box-shadow: 0 2px 25px rgba(0, 0, 0, 0.2);
 }
 ul li{
     list-style-type: none;
     font-size: 17px;
     height: 60px;
-    /* background: green; */
-    /* border-top: 1px solid rgb(0, 0, 0, 0.2); */
     border-bottom: var(--border-color);
     padding: 12px 8px 12px 20px;
     user-select: none;
-    /* cursor: pointer; */
     position: relative;
-    /* color: var(--dark-text-color); */
     color: var(--text-color);
     display: flex;
     align-items: center;
@@ -198,18 +185,12 @@ ul li:hover::before{
     background-repeat: no-repeat;
     
 }
-/* ul li:hover::after{
-    content: url(images/icon-cross.svg);
-    position: absolute;
-    right: 0px;
-    margin-right: 20px;
-    cursor: pointer;
-} */
+
 ul li span.delete-icon {
-    background-image: url(images/icon-cross.svg); /* Add the image URL here */
+    background-image: url(images/icon-cross.svg); 
     background-size: cover;
-    width: 20px; /* Adjust the width as needed */
-    height: 20px; /* Adjust the height as needed */
+    width: 20px;
+    height: 20px;
     cursor: pointer;
     position: absolute;
     right: 0;
@@ -258,12 +239,6 @@ ul li.checked::before{
     padding-left: 20px;
     padding-right: 20px;
 }
-/* .bottomNav2content{
-    font-size: 16px;
-    cursor: pointer;
-    color: rgba(0, 0, 0, 0.5);
-} */
-
 .all{
     font-size: 16px;
     cursor: pointer;
