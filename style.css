@@ -8,6 +8,7 @@
 }
 :root {
     --primary-bg: url('images/bg-desktop-light.jpg');
+    --mobileprimary-bg: url(images/bg-mobile-light.jpg);
     --secondary-bg: #fff;
     --boxcontainer-bg: #fff;
     --text-color: hsl(0, 0%, 0%);
@@ -15,19 +16,6 @@
     --bottomNav-color: rgba(0, 0, 0, 0.5);
     --bottomNavhover-color: rgb(0,0,0);
     --border-color: 1px solid rgb(0, 0, 0, 0.2);
-    
-
-    
-    
-  
-    --button-bg: #ff5945; /* Bright orange-red */
-    --button-text: #fff; /* White */
-  
-    --list-item-bg: #edeef0; /* Light gray */
-    --list-item-text: #555; /* Dim gray */
-    --slider-button: #c3c3c3;
-    --text-color1: black;
-
 
     --dark-primary-bg: url('images/bg-desktop-dark.jpg');
     --dark-secondary-bg: hsl(235, 21%, 11%);
@@ -40,7 +28,17 @@
 
    
 }
-
+body.dark-mode{
+    --primary-bg: url('images/bg-desktop-dark.jpg');
+    --mobileprimary-bg: url(images/bg-mobile-dark.jpg);
+    --secondary-bg: hsl(235, 21%, 11%);
+    --boxcontainer-bg: hsl(235, 24%, 19%);
+    --text-color: hsl(234, 39%, 85%);
+    --linethrough-color: hsl(233, 14%, 35%);
+    --bottomNav-color: hsl(234, 11%, 52%);
+    --bottomNavhover-color: hsl(234, 39%, 85%);
+    --border-color: 1px solid hsl(237, 14%, 26%);
+}
 
 
 /* ### Light Theme
@@ -60,37 +58,39 @@
 - Dark Grayish Blue: hsl(234, 11%, 52%)
 - Very Dark Grayish Blue: hsl(233, 14%, 35%)
 - Very Dark Grayish Blue: hsl(237, 14%, 26%) */
-
-
-
-.darkmode{
-    --dark-primary-bg: url('images/bg-desktop-dark.jpg');
+body{
+    background: var(--secondary-bg);
+    margin-bottom: 200px;
 }
-
 .bg-container{
     display: flex;
     flex-direction: column;
     width: 100%;
     height: 100vh;
     position: relative;
+    background: var(--secondary-bg);
+    
 
 }
 
 .bg-containerTop{
     height: 35%;
     width: 100%;
-    background-image: var(--dark-primary-bg);
+    background-image: var(--primary-bg);
     background-size: cover;
     background-repeat: no-repeat;
 }
 .bg-containerBottom{
-    height: 65%;
+    flex: 1;
     width: 100%;
-    background: var(--dark-secondary-bg);
+    background: var(--secondary-bg);
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
+    /* background-color: green; */
+    max-height: 100vh;
+    
 }
 
 .container{
@@ -102,6 +102,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    margin-bottom: 40px;
 }
 
 .top{
@@ -146,7 +147,7 @@
 .down{
     height: 40%;
     width: 100%;
-    background: var(--dark-boxcontainer-bg);
+    background: var(--boxcontainer-bg);
     display: flex;
     border-radius: 5px;
     align-items: center;
@@ -177,12 +178,12 @@ input{
     border: none;
     background: none;
     outline: none;
-    color: var(--dark-text-color);
+    color: var(--text-color);
 }
 
 .bottom{
     width: 100%;
-    background: var(--dark-boxcontainer-bg);
+    background: var(--boxcontainer-bg);
     border-radius: 5px;
     display: flex;
     flex-direction: column;
@@ -195,13 +196,13 @@ ul li{
     height: 60px;
     /* background: green; */
     /* border-top: 1px solid rgb(0, 0, 0, 0.2); */
-    border-bottom: var(--dark-border-color);
+    border-bottom: var(--border-color);
     padding: 12px 8px 12px 20px;
     user-select: none;
     /* cursor: pointer; */
     position: relative;
     /* color: var(--dark-text-color); */
-    color: var(--dark-text-color);
+    color: var(--text-color);
     display: flex;
     align-items: center;
     border-radius: 5px;
@@ -243,7 +244,7 @@ ul li span.delete-icon {
 }
 
 ul li.checked{
-    color: var(--dark-linethrough-color);
+    color: var(--linethrough-color);
     text-decoration: line-through;
 }
 ul li.checked::before{
@@ -271,10 +272,10 @@ ul li.checked::before{
 .leftitem{
     font-size: 16px;
     cursor: pointer;
-    color: var(--dark-bottomNav-color);
+    color: var(--bottomNav-color);
 }
 .leftitem:hover{
-    color: var(--dark-bottomNavhover-color);
+    color: var(--bottomNavhover-color);
 }
 .bottomNav2{
     flex: 1;
@@ -293,26 +294,26 @@ ul li.checked::before{
 .all{
     font-size: 16px;
     cursor: pointer;
-    color: var(--dark-bottomNav-color);
+    color: var(--bottomNav-color);
 }
 .actives{
     font-size: 16px;
     cursor: pointer;
-    color: var(--dark-bottomNav-color);
+    color: var(--bottomNav-color);
 }
 .completed{
     font-size: 16px;
     cursor: pointer;
-    color: var(--dark-bottomNav-color);
+    color: var(--bottomNav-color);
 }
 .all:hover{
-    color: var(--dark-bottomNavhover-color);
+    color: var(--bottomNavhover-color);
 }
 .actives:hover{
-    color: var(--dark-bottomNavhover-color);
+    color: var(--bottomNavhover-color);
 }
 .completed:hover{
-    color: var(--dark-bottomNavhover-color);
+    color: var(--bottomNavhover-color);
 }
 .all.active {
     color: #002dce; 
@@ -332,9 +333,39 @@ ul li.checked::before{
 .clear{
     font-size: 16px;
     cursor: pointer;
-    color: var(--dark-bottomNav-color);
+    color: var(--bottomNav-color);
     
 }
 .clear:hover{
-    color: var(--dark-bottomNavhover-color);
+    color: var(--bottomNavhover-color);
+}
+
+
+@media (max-width: 660px){
+    body{
+        margin-bottom: 150px;
+    }
+    .bg-containerTop{
+        height: 35%;
+        width: 100%;
+        background-image: var(--mobileprimary-bg);
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+    .container{
+        width: 90%;
+    }
+    .bottomNav{
+        position: relative;
+        justify-content: space-between;
+    }
+    .bottomNav2{
+        position: absolute;
+        margin-top: 75px;
+        width: 100%;
+        height: 50px;
+        background: var(--boxcontainer-bg);
+        border-radius: 5px;
+    }
+    
 }

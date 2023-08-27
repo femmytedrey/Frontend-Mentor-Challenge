@@ -4,13 +4,17 @@ const sun = document.querySelector(".iconsun");
 moon.addEventListener('click', () => {
     moon.style.display = 'none';
     sun.style.display = 'block';
-    saveData();
+    document.body.classList.toggle("dark-mode");
+
+    saveData()
 });
 
 sun.addEventListener('click', () => {
     moon.style.display = 'block';
     sun.style.display = 'none';
-    saveData();
+    document.body.classList.remove("dark-mode");
+
+    saveData()
 });
 
 const inputElement = document.getElementById('input-box');
@@ -38,6 +42,21 @@ window.addEventListener('DOMContentLoaded', () => {
         item.addEventListener('dragover', handleDragOver);
         item.addEventListener('drop', handleDrop);
     });
+    // const savedDarkMode = localStorage.getItem('darkMode');
+    // if (savedDarkMode === "true") {
+    //     document.body.classList.add("dark-mode");
+    // }
+
+    const savedDarkMode = localStorage.getItem('darkMode');
+    if (savedDarkMode === "true") {
+        moon.style.display = 'none';
+        sun.style.display = 'block';
+        document.body.classList.add("dark-mode");
+    } else {
+        moon.style.display = 'block';
+        sun.style.display = 'none';
+        document.body.classList.remove("dark-mode");
+    }
 
     updateItemsLeftCount();
 });
@@ -194,21 +213,20 @@ function handleDrop(e) {
     }
 
     if (draggedItem !== this) {
-        draggedItem.parentNode.removeChild(draggedItem);
         const dropZone = this.closest('li');
-        dropZone.insertAdjacentElement('beforebegin', draggedItem);
+        dropZone.parentNode.insertBefore(draggedItem, dropZone);
     }
 
     return false;
 }
 
 
-
 const saveData = () => {
     try {
-        localStorage.setItem("data", listContainer.innerHTML);
-        console.log("Data saved successfully!");
+        const isDarkMode = document.body.classList.contains("dark-mode");
+        localStorage.setItem("darkMode", isDarkMode.toString());
+        console.log("Dark mode state saved successfully!");
     } catch (error) {
-        console.error("Error while saving data:", error);
+        console.error("Error while saving dark mode state:", error);
     }
 };
